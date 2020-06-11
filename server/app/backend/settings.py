@@ -88,15 +88,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'events',
-        'USER': 'django-user',
+        'USER': 'django_user',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
-    }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
+    },
 }
 
 
