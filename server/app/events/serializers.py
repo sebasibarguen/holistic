@@ -2,8 +2,19 @@ from rest_framework import serializers
 from events.models import Event, EVENT_TYPES
 
 
-class EventSerializer(serializers.Serializer):
+class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ['message_id', 'user_id', 'event', 'type', 'properties', 'context']
+        fields = [
+            'created_at', 
+            'messageId', 
+            'userId', 
+            'event', 
+            'type', 
+            'properties', 
+            'context', 
+            'sentAt',
+            'timestamp',
+            'originalTimestamp'
+        ]

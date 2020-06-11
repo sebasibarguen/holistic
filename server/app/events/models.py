@@ -12,20 +12,27 @@ EVENT_TYPES = [
 
 class Event(models.Model):
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    sent_at = models.DateTimeField()
+    created_at = models.DateTimeField(null=False, blank=False, auto_now_add=True)
+    
     timestamp = models.DateTimeField()
+    receivedAt = models.DateTimeField(blank=True, null=True)
+    sentAt = models.DateTimeField(blank=True, null=True)
+    originalTimestamp = models.DateTimeField(blank=True, null=True)
 
-    message_id = models.CharField(max_length=100, primary_key=True, unique=True)
-    user_id = models.CharField(max_length=100, blank=True, default='')
+    messageId = models.CharField(max_length=100, primary_key=True, unique=True)
+    userId = models.CharField(max_length=100, blank=True, default='')
+    anonymousId = models.CharField(max_length=100, blank=True, default='')
     
     event = models.CharField(max_length=100)
     type = models.CharField(max_length=25, choices=EVENT_TYPES, default='track')
 
-    properties = JSONField()
-    context = JSONField()
+    version = models.CharField(max_length=100, blank=True, null=True)
+    channel = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
-    data = JSONField()
+    properties = JSONField(blank=True, null=True)
+    integrations = JSONField(blank=True, null=True)
+    context = JSONField(blank=True)
 
     class Meta:
         ordering = ['created_at']
